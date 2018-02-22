@@ -6,8 +6,8 @@
 
 ## Table of content
 
-- 01 - What is Pytorch?
-- 02 - Autograd: automatic differentiation
+- [01 - What is Pytorch?](https://github.com/victor-iyiola/pytorch-examples/tree/master/01%20-%20What%20is%20Pytorch%3F)
+- [02 - Autograd: automatic differentiation](https://github.com/victor-iyiola/pytorch-examples/tree/master/02%20-%20Autograd–%20automatic%20differentiation)
 - 03 - Neural Networks
 - 04 - Training a classifier
 - 05 - Optional: Data Parallelism
