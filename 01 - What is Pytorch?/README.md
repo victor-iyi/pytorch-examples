@@ -23,7 +23,7 @@ x = torch.Tensor(5, 3)
 print(x)
 ```
 
-```python
+```bash
 1.00000e-29 *
   0.0000  0.0000  3.9260
   0.0000  0.0000  0.0000
@@ -43,7 +43,7 @@ x = torch.rand(5, 3)
 print(x)
 ```
 
-```
+```bash
  0.9152  0.4046  0.7690
  0.6653  0.6564  0.9553
  0.4627  0.0858  0.8089
@@ -61,7 +61,7 @@ In [4]:
 x.size()
 ```
 
-```python
+```bash
 torch.Size([5, 3])
 ```
 
@@ -72,7 +72,7 @@ y = torch.FloatTensor(3, 5)
 print(y)
 ```
 
-```python
+```bash
  0.0000e+00  0.0000e+00  2.6258e-29  3.6893e+19  5.6052e-45
  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  2.6372e-29
@@ -100,7 +100,7 @@ In [7]:
 print(x + y)
 ```
 
-```
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -118,7 +118,7 @@ out = x + y
 print(out)
 ```
 
-```python
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -136,7 +136,7 @@ In [9]:
 print(torch.add(x, y))
 ```
 
-```python
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -154,7 +154,7 @@ out = torch.add(x, y)
 print(out)
 ```
 
-```python
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -173,7 +173,7 @@ torch.add(x, y, out=result)
 print(result)
 ```
 
-```python
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -192,7 +192,7 @@ y.add_(x)
 print(y)
 ```
 
-```
+```bash
  0.4040  0.5859  0.8088
  0.2688  0.1638  0.1029
  0.0107  0.7332  0.3672
@@ -212,7 +212,7 @@ In [13]:
 print(x[:, 1])
 ```
 
-```
+```bash
 1.00000e-45 *
   0.0000
   7.0065
@@ -238,7 +238,7 @@ print('y.size() = {}'.format(y.size()))
 print('z.size() = {}'.format(z.size()))
 ```
 
-```python
+```bash
 x.size() = torch.Size([4, 4])
 y.size() = torch.Size([16])
 z.size() = torch.Size([2, 8])
@@ -253,7 +253,7 @@ a = x.view_as(z)  # inferred from a Tensor shape
 print('a.size() = {}'.format(a.size()))
 ```
 
-```python
+```bash
 a.size() = torch.Size([2, 8])
 
 ```
@@ -268,7 +268,7 @@ product = x@y
 print(product)
 ```
 
-```python
+```bash
  0.0000e+00  0.0000e+00  2.4032e-29  3.3767e+19  2.0280e-29
  0.0000e+00  0.0000e+00  1.7468e-29  2.4544e+19  2.5193e-29
  0.0000e+00  0.0000e+00  1.2150e-29  1.7072e+19  2.1332e-29
@@ -299,7 +299,7 @@ print(a)
 print(b)
 ```
 
-```python
+```bash
  1
  1
  1
@@ -317,7 +317,7 @@ b = a.numpy()
 print(b)
 ```
 
-```python
+```bash
 [1. 1. 1. 1. 1.]
 
 ```
@@ -332,7 +332,7 @@ print(a)
 print(b)
 ```
 
-```python
+```bash
  2
  2
  2
@@ -354,7 +354,7 @@ c = torch.from_numpy(b)
 print(c)
 ```
 
-```python
+```bash
  2
  2
  2
@@ -374,7 +374,7 @@ print(f'b: {b} -Numpy')
 print(f'c: {c} -Torch')
 ```
 
-```python
+```bash
 a: 
  5
  5
@@ -412,7 +412,7 @@ np.add(a, 1, out=a)
 print(a)
 ```
 
-```python
+```bash
 [2. 2. 2. 2. 2.]
 
  2
@@ -447,8 +447,7 @@ else:
     print("You don't have a GPU or CUDA  isn't enabled!")
 ```
 
-```python
+```bash
 You don't have a GPU or CUDA  isn't enabled!
 
 ```
-

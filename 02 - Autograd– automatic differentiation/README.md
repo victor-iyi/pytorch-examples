@@ -18,14 +18,14 @@ You can access the raw tensor through the `.data` attribute, whie the gradient w
 
 If you want to compute the derivates, you can call the `.backward()` on a `Variable`. If `Variable` is a scalar *(i.e it holds a one element data),* you don't need to specify any arguments to `backward()`, however if it has more elements, you need to specify a `grad_output` argument that is a tensor of matching shape.
 
+
+
 In [1]:
 
 ```python
 import torch
 from torch.autograd import Variable
 ```
-
-
 
 In [2]:
 
@@ -35,9 +35,7 @@ x = Variable(torch.ones(2, 2), requires_grad=True)
 print(x)
 ```
 
-Out [2]:
-
-```python
+```bash
 Variable containing:
  1  1
  1  1
@@ -54,10 +52,9 @@ In [3]:
 print(x.grad_fn)
 ```
 
-Out [3]:
-
-```python
+```bash
 None
+
 ```
 
 In [4]:
@@ -68,9 +65,7 @@ y = x + 2
 print(y)
 ```
 
-Out [4]:
-
-```python
+```bash
 Variable containing:
  3  3
  3  3
@@ -81,20 +76,18 @@ Variable containing:
 
 `y` was created as a result of an operation, so it has a `grad_fn`.
 
-In [4]:
+In [5]:
 
 ```python
 print(y.grad_fn)
 ```
 
-Out [4]:
-
-```python
+```bash
 <AddBackward0 object at 0x108619b38>
 
 ```
 
-In [5]:
+In [6]:
 
 ```python
 # Do more operation on y
@@ -106,9 +99,7 @@ print(z)
 print(out)
 ```
 
-Out [5]:
-
-```python
+```bash
 Variable containing:
  27  27
  27  27
@@ -125,22 +116,20 @@ Variable containing:
 
 Let's backprop now `out.backward()` is equivalent to doing `out.backward(torch.Tensor([1.0]))`
 
-In [6]:
+In [7]:
 
 ```python
 out.backward()
 ```
 
-In [7]:
+In [8]:
 
 ```python
 # print gradients d(out)/dx
 print(x.grad)
 ```
 
-Out [7]:
-
-```python
+```bash
 
 Variable containing:
  4.5000  4.5000
@@ -160,7 +149,7 @@ $$
 
 You can do many crazy things with `autograd`!
 
-In [8]:
+In [9]:
 
 ```python
 # Randomly initialze x
@@ -168,7 +157,7 @@ x = torch.randn(3)
 x = Variable(x, requires_grad=True)
 ```
 
-In [9]:
+In [10]:
 
 ```python
 # y is the element-wise multiplication of x & 2
@@ -178,9 +167,7 @@ while y.data.norm() < 1000:
 print(y)
 ```
 
-Out [9]:
-
-```python
+```bash
 Variable containing:
  1169.9318
   291.7206
@@ -190,7 +177,7 @@ Variable containing:
 
 ```
 
-In [10]:
+In [11]:
 
 ```python
 gradients = torch.FloatTensor([0.1, 1.0, 0.0001])
@@ -198,9 +185,7 @@ y.backward(gradients)
 print(x.grad)
 ```
 
-Out [10]:
-
-```python
+```bash
 Variable containing:
   409.6000
  4096.0000
