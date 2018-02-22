@@ -35,7 +35,7 @@ x = Variable(torch.ones(2, 2), requires_grad=True)
 print(x)
 ```
 
-```bash
+```sh
 Variable containing:
  1  1
  1  1
@@ -52,7 +52,7 @@ In [3]:
 print(x.grad_fn)
 ```
 
-```bash
+```sh
 None
 
 ```
@@ -65,7 +65,7 @@ y = x + 2
 print(y)
 ```
 
-```bash
+```sh
 Variable containing:
  3  3
  3  3
@@ -82,7 +82,7 @@ In [5]:
 print(y.grad_fn)
 ```
 
-```bash
+```sh
 <AddBackward0 object at 0x108619b38>
 
 ```
@@ -99,7 +99,7 @@ print(z)
 print(out)
 ```
 
-```bash
+```sh
 Variable containing:
  27  27
  27  27
@@ -129,7 +129,7 @@ In [8]:
 print(x.grad)
 ```
 
-```bash
+```sh
 
 Variable containing:
  4.5000  4.5000
@@ -142,7 +142,7 @@ You should have got a matrix of `4.5`. Let's call the `out` Variable $“o”$.
 
  $We \space have \space that;\space o = {1\over4} \sum_i z_i, z_i = 3(x_i + 2)^2 \space and \space z_i|_{x=1} = 27.$
 
-$Therefore, {\delta o \over \delta x_i} = {3\over2}(x_i + 2) ,\space hence \space {\delta o \over \delta x_i}|_{x_i=1}~ =  {9\over2} = 4.5​$
+$Therefore, {\delta o \over \delta x_i} = {3\over2}(x_i + 2) ,\space hence \space {\delta o \over \delta x_i}|_{x_i=1}~ =  {9\over2} = 4.5$
 
 You can do many crazy things with `autograd`!
 
@@ -164,7 +164,7 @@ while y.data.norm() < 1000:
 print(y)
 ```
 
-```bash
+```sh
 Variable containing:
  1169.9318
   291.7206
@@ -182,7 +182,7 @@ y.backward(gradients)
 print(x.grad)
 ```
 
-```bash
+```sh
 Variable containing:
   409.6000
  4096.0000
