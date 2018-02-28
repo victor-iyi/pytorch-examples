@@ -20,5 +20,6 @@ __pycache__/
 
 ### Datafilies
 datasets/
+saved/
 tensorboard/
 models/
