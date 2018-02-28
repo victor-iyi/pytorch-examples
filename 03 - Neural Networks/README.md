@@ -6,7 +6,7 @@ Now that you had a glipse of `autograd`, `nn` depends on `autograd` to define mo
 
 For example, look at a simple convolutional neural network that classifies digit images:
 
-![Convnet](../images/mnist-convnet.png)
+![A Simple Convolutional Neural Network](../images/mnist.png)
 
 It is a simple convolutional neural network. It takes the input, feeds it through several layers one after the other and then finally gives the output.
 

@@ -14,6 +14,8 @@ You can access the raw tensor through the `.data` attribute, whie the gradient w
 - grad
 - creator
 
+![Variable](../images/Variable.png)
+
 `Variable` and `Function` are interconnected and build up an acyclic graph, that encodes a complete history of computation. Each variable has a `.grad_fn` attribute that references a `Function` that has created the `Variable` (except for Variables created by the user –their `grad_fn` is `None`).
 
 If you want to compute the derivates, you can call the `.backward()` on a `Variable`. If `Variable` is a scalar *(i.e it holds a one element data),* you don't need to specify any arguments to `backward()`, however if it has more elements, you need to specify a `grad_output` argument that is a tensor of matching shape.
