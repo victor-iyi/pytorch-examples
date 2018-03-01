@@ -2,7 +2,7 @@
 
 #### by Victor I. Afolabi
 
-
+[![PyTorch Logo](images/pytorch-logo-flat.png)](http://pytorch.org/)
 
 ## Table of content
 
