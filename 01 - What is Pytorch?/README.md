@@ -451,3 +451,12 @@ else:
 You don't have a GPU or CUDA  isn't enabled!
 
 ```
+
+------
+
+Previous 	[Next](../02 - Autograd– automatic differentiation/README.md)
+
+
+
+[^Victor I. Afolabi]: A Pytorch tutorial
+
