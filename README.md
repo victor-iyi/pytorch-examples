@@ -10,7 +10,7 @@
 - [02 - Autograd: automatic differentiation](02%20-%20Autograd–%20automatic%20differentiation/README.md)
 - [03 - Neural Networks](03%20-%20Neural%20Networks/README.md)
 - [04 - Training a classifier](04%20-%20Training%20a%20classifier/README.md)
-- 05 - Optional– Data Parallelism
+- 05 - Learning PyTorch with Examples
 - 06 - Classifying Names with a Character-level RNN
 - 07 - Generating Names with a Character-level RNN
 - 08 - Translation with a Sequence to Sequence Network and Attention
