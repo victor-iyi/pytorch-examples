@@ -604,3 +604,436 @@ In PyTorch, the `nn` package serves this same purpose. The `nn` package defines 
 
 In this example we use the `nn` package to implement our two-layer network:
 
+In [1]:
+
+```python
+import torch
+import torch.nn as nn
+
+from torch.autograd import Variable
+```
+
+In [2]:
+
+```python
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
+```
+
+In [3]:
+
+```python
+# Here we generate a uniform distribution of random numbers between -1
+# and 1; with a random number for the outputs, and wrapped them in
+# Variables. Setting requires_grad to False indicates we don't need to
+# compute gradients w.r.t. these Variables during the backward pass.
+# requires_grad is set to False by default.
+x = Variable(torch.randn(N, D_in).uniform_(-1, 1))
+y = Variable(torch.randn(N, D_out))
+```
+
+In [4]:
+
+```python
+# We can use the nn.Sequential to model our network
+# as a sequence of layers. The layers are arranged
+# sequentially. Each nn.Linear computs output from
+# input using a linear function (y=wx+b) and holds
+# internal variables for weights and biases.
+model = nn.Sequential(
+    nn.Linear(D_in, H),
+    nn.ReLU(),
+    nn.Linear(H, D_out),
+)
+```
+
+In [5]:
+
+```python
+# The nn package also contains popular loss functions.
+# In this case we'll use the MSE (Mean Squared Erorr)
+# to estimate how bad our predictions are.
+loss_fn = nn.MSELoss()
+```
+
+In [6]:
+
+```python
+# Learning rate.
+lr = 1e-2
+```
+
+In [7]:
+
+```python
+# Training iterations.
+train_iter = 500
+
+for t in range(train_iter):
+    y_pred = model(x)
+    
+    loss = loss_fn(y_pred, y)
+    print(f'\rt = {t+1:,}\tloss = {loss.data[0]:.2f}', end='')
+    
+    # Zero out the gradient buffer to prevent gradient accumulation.
+    model.zero_grad()
+    
+    # Use the autograd to compute the backward pass. 
+    loss.backward()
+    
+    # Update the learnable parameters using Gradient descent.
+    # The parameters of the model is gotten by calling 
+    # model.parameters. The parameters are autograd Variable
+    # therefore, we can access it's gradient value like before.
+    # NOTE: torch.optim does this for us.
+    for param in model.parameters():
+        param.data -= lr * param.grad.data
+```
+
+```sh
+t = 500	loss = 0.12
+
+```
+
+### PyTorch: optim
+
+Up to this point we have updated the weights of our models by manually mutating the `.data` member for Variables holding learnable parameters. This is not a huge burden for simple optimization algorithms like stochastic gradient descent, but in practice we often train neural networks using more sophisticated optimizers like `AdaGrad`, `RMSProp`, `Adam`, etc.
+
+The `optim` package in PyTorch abstracts the idea of an optimization algorithm and provides implementations of commonly used optimization algorithms.
+
+In this example we will use the `nn` package to define our model as before, but we will optimize the model using the Adam algorithm provided by the `optim` package:
+
+In [1]:
+
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+from torch.autograd import Variable
+```
+
+In [2]:
+
+```python
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
+```
+
+In [3]:
+
+```python
+# Here we generate a uniform distribution of random numbers between -1
+# and 1; with a random number for the outputs, and wrapped them in
+# Variables. Setting requires_grad to False indicates we don't need to
+# compute gradients w.r.t. these Variables during the backward pass.
+# requires_grad is set to False by default.
+x = Variable(torch.randn(N, D_in).uniform_(-1, 1))
+y = Variable(torch.randn(N, D_out))
+```
+
+In [4]:
+
+```python
+# We can use the nn.Sequential to model our network
+# as a sequence of layers. The layers are arranged
+# sequentially. Each nn.Linear computs output from
+# input using a linear function (y=wx+b) and holds
+# internal variables for weights and biases.
+model = nn.Sequential(
+    nn.Linear(D_in, H),
+    nn.ReLU(),
+    nn.Linear(H, D_out),
+)
+```
+
+In [5]:
+
+```python
+# The nn package also contains popular loss functions.
+# In this case we'll use the MSE (Mean Squared Erorr)
+# to estimate how bad our predictions are.
+loss_fn = nn.MSELoss()
+```
+
+In [6]:
+
+```python
+# Use the optim package to define an Optimizer that will update the weights of
+# the model for us. Here we will use Adam; the optim package contains many other
+# optimization algoriths. The first argument to the Adam constructor tells the
+# optimizer which Variables it should update.
+lr = 1e-2
+optimizer = optim.Adam(model.parameters(), lr=lr)
+```
+
+In [7]:
+
+```python
+# Training iterations.
+train_iter = 500
+
+for t in range(train_iter):
+    y_pred = model(x)
+    
+    loss = loss_fn(y_pred, y)
+    print(f'\rt = {t+1:,}\tloss = {loss.data[0]:.4f}', end='')
+
+    # Before the backward pass, use the optimizer object to zero all of the
+    # gradients for the variables it will update (which are the learnable
+    # weights of the model). This is because by default, gradients are
+    # accumulated in buffers( i.e, not overwritten) whenever .backward()
+    # is called. Checkout docs of torch.autograd.backward for more details.
+    optimizer.zero_grad()
+    
+    # Use the autograd to compute the backward pass. 
+    loss.backward()
+    
+    # Calling the step function on an Optimizer makes an update to its
+    # parameters
+    optimizer.step()
+```
+
+```sh
+t = 500	loss = 0.0002
+
+```
+
+### PyTorch: Custom nn Modules
+
+Sometimes you will want to specify models that are more complex than a sequence of existing Modules; for these cases you can define your own Modules by subclassing `nn.Module` and defining a `forward` method which receives input Variables and produces output Variables using other modules or other autograd operations on Variables.
+
+In this example we implement our two-layer network as a custom Module subclass:
+
+In [1]:
+
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+from torch.autograd import Variable
+```
+
+In [2]:
+
+```python
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
+```
+
+In [3]:
+
+```python
+# Here we generate a uniform distribution of random numbers between -1
+# and 1; with a random number for the outputs, and wrapped them in
+# Variables. Setting requires_grad to False indicates we don't need to
+# compute gradients w.r.t. these Variables during the backward pass.
+# requires_grad is set to False by default.
+x = Variable(torch.randn(N, D_in).uniform_(-1, 1))
+y = Variable(torch.randn(N, D_out))
+```
+
+In [4]:
+
+```python
+class TwoLayer(nn.Module):
+    
+    def __init__(self, D_in, H, D_out):
+        super(TwoLayer, self).__init__()
+        
+        # Network Structure: In the constructor we instantiate 
+        # two nn.Linear modules and assign them as member variables.
+        self.linear1 = nn.Linear(in_features=D_in, out_features=H)
+        self.linear2 = nn.Linear(in_features=H, out_features=D_out)
+    
+    def forward(self, x):
+        # In the forward function we accept a Variable of input data 
+        # and we must return a Variable of output data. We can use 
+        # Modules defined in the constructor as well as arbitrary 
+        # operators on Variables.
+        h_relu = self.linear1(x).clamp(min=0)
+        y_pred = self.linear2(h_relu)
+        
+        return y_pred
+```
+
+In [5]:
+
+```python
+# Construct our model by instantiating the class defined above.
+model = TwoLayer(D_in, H, D_out)
+```
+
+In [6]:
+
+```python
+# Construct our loss function and an Optimizer. The call to model.parameters()
+# in the SGD constructor will contain the learnable parameters of the two
+# nn.Linear modules which are members of the model.
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=1e-2)
+```
+
+In [7]:
+
+```python
+# Training iterations.
+train_iter = 500
+
+for t in range(train_iter):
+    # Forward pass: Compute predicted y by passing x to the model.
+    y_pred = model(x)
+    
+    # Compute and print loss.
+    loss = criterion(y_pred, y)
+    print(f'\rt = {t+1:,}\tloss = {loss.data[0]:.2f}', end='')
+
+    # Before the backward pass, use the optimizer object to zero all of the
+    # gradients for the variables it will update (which are the learnable
+    # weights of the model). This is because by default, gradients are
+    # accumulated in buffers( i.e, not overwritten) whenever .backward()
+    # is called. Checkout docs of torch.autograd.backward for more details.
+    optimizer.zero_grad()
+    
+    # Use the autograd to compute the backward pass. 
+    loss.backward()
+    
+    # Calling the step function on an Optimizer makes an update to its
+    # parameters
+    optimizer.step()
+```
+
+```sh
+t = 500	loss = 0.15
+
+```
+
+### PyTorch: Control Flow + Weight Sharing
+
+As an example of dynamic graphs and weight sharing, we implement a very strange model: a fully-connected ReLU network that on each forward pass chooses a random number between 1 and 4 and uses that many hidden layers, reusing the same weights multiple times to compute the innermost hidden layers.
+
+For this model we can use normal Python flow control to implement the loop, and we can implement weight sharing among the innermost layers by simply reusing the same Module multiple times when defining the forward pass.
+
+We can easily implement this model as a Module subclass:
+
+In [1]:
+
+```python
+import random
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+from torch.autograd import Variable
+```
+
+In [2]:
+
+```python
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
+```
+
+In [3]:
+
+```python
+# Here we generate a uniform distribution of random numbers between -1
+# and 1; with a random number for the outputs, and wrapped them in
+# Variables. Setting requires_grad to False indicates we don't need to
+# compute gradients w.r.t. these Variables during the backward pass.
+# requires_grad is set to False by default.
+x = Variable(torch.randn(N, D_in).uniform_(-1, 1))
+y = Variable(torch.randn(N, D_out))
+```
+
+In [4]:
+
+```python
+class DynamicNet(nn.Module):
+    
+    def __init__(self, D_in, H, D_out):
+        super(DynamicNet, self).__init__()
+        
+        # In the constructor we construct three nn.Linear 
+        # instances that we will use in the forward pass.
+        self.input_linear = torch.nn.Linear(D_in, H)
+        self.middle_linear = torch.nn.Linear(H, H)
+        self.output_linear = torch.nn.Linear(H, D_out)
+    
+    def forward(self, x):
+        """
+        For the forward pass of the model, we randomly choose either 0, 1, 2, or 3
+        and reuse the middle_linear Module that many times to compute hidden layer
+        representations.
+
+        Since each forward pass builds a dynamic computation graph, we can use normal
+        Python control-flow operators like loops or conditional statements when
+        defining the forward pass of the model.
+
+        Here we also see that it is perfectly safe to reuse the same Module many
+        times when defining a computational graph. This is a big improvement from Lua
+        Torch, where each Module could be used only once.
+        """
+        h_relu = self.input_linear(x).clamp(min=0)
+        for _ in range(random.randint(0, 3)):
+            h_relu = self.middle_linear(h_relu).clamp(min=0)
+        y_pred = self.output_linear(h_relu)
+        return y_pred
+```
+
+In [5]:
+
+```python
+# Construct our model by instantiating the class defined above.
+model = DynamicNet(D_in, H, D_out)
+```
+
+In [6]:
+
+```python
+# Construct our loss function and an Optimizer. The call to model.parameters()
+# in the SGD constructor will contain the learnable parameters of the two
+# nn.Linear modules which are members of the model.
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=1e-2)
+```
+
+In [7]:
+
+```python
+# Training iterations.
+train_iter = 500
+
+for t in range(train_iter):
+    # Forward pass: Compute predicted y by passing x to the model.
+    y_pred = model(x)
+    
+    # Compute and print loss.
+    loss = criterion(y_pred, y)
+    print(f'\rt = {t+1:,}\tloss = {loss.data[0]:.2f}', end='')
+
+    # Before the backward pass, use the optimizer object to zero all of the
+    # gradients for the variables it will update (which are the learnable
+    # weights of the model). This is because by default, gradients are
+    # accumulated in buffers( i.e, not overwritten) whenever .backward()
+    # is called. Checkout docs of torch.autograd.backward for more details.
+    optimizer.zero_grad()
+    
+    # Use the autograd to compute the backward pass. 
+    loss.backward()
+    
+    # Calling the step function on an Optimizer makes an update to its
+    # parameters
+    optimizer.step()
+```
+
+```sh
+t = 500	loss = 1.03
+
+```
