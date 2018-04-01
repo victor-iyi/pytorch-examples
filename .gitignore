@@ -19,7 +19,7 @@ __pycache__/
 .idea/
 
 ### Datafilies
-datasets/
+datasets/*/*
 saved/
 tensorboard/
 models/
