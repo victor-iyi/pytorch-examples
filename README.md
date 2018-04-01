@@ -27,4 +27,4 @@
 
 ### Contribution
 
-This project is opened under [MIT 2.0 license](https://github.com/victor-iyiola/cancer-research/blob/master/LICENSE).
+This project is opened under [MIT 2.0 license](https://github.com/victor-iyiola/pytorch-examples/blob/master/LICENSE).
