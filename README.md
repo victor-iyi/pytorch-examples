@@ -15,13 +15,19 @@
 - [03 - Neural Networks](03%20-%20Neural%20Networks/README.md)
 - [04 - Training a classifier](04%20-%20Training%20a%20classifier/README.md)
 - [05 - Learning PyTorch with Examples](05%20-%20Learning%20PyTorch%20with%20Examples/README.md)
-- 06 - Classifying Names with a Character-level RNN
-- 07 - Generating Names with a Character-level RNN
-- 08 - Translation with a Sequence to Sequence Network and Attention
-- 09 - Reinforcement Learning (DQN)
-- 10 - Neural transfer
-- 11 - Creating extension using numpy and scipy
-- 12 - Custom C extension for pytorch
+- [06 - Transfer Learning](06%20-%20Transfer%20Learning/README.md)
+- 07 - Data Loading and Processing
+- 08 - Deep Learning for NLP with Pytorch
+- 09 - Classifying Names with a Character-Level RNN
+- 10 - Generating Names with a Character-Level RNN
+- 11 - Translation with Sequence to Sequence Network and Attention
+- 12 - Reinforcement Learning (DQN)
+- 13 - Spatial Transformer Networks
+- 14 - Neural Transfer with PyTorch
+- 15 - Creating extensions using numpy and scipy
+- 16 - Custom C extensions for PyTorch
+
+
 
 
 
