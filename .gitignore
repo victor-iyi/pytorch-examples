@@ -19,7 +19,9 @@ __pycache__/
 .idea/
 
 ### Datafilies
-datasets/
+datasets/*
+!datasets/README.md
+!datasets/.gitkeep
 saved/
 tensorboard/
 models/
