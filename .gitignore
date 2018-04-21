@@ -3,25 +3,31 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
 # C extensions
 *.so
+
 # Jupyter Notebook
 .ipynb_checkpoints
+
 
 ### macOS template
 .DS_Store
 ._*
 
+
 ### VisualStudioCode template
 .vscode/*
 
+
 ### JetBrains
 .idea/
+
 
 ### Datafilies
 datasets/*
 !datasets/README.md
 !datasets/.gitkeep
-saved/
-tensorboard/
-models/
+
+saved/*
+!saved/.gitkeep
