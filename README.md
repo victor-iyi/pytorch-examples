@@ -2,11 +2,11 @@
 
 #### by Victor I. Afolabi
 
-<p align="center">
+<div align="center" style="width: 80%; margin: 0 auto;">
 
 <a href="https://pytorch.org"><img  src="images/pytorch-logo-flat.png"/></a>
 
-</p>
+</div>
 
 ## Table of content
 
