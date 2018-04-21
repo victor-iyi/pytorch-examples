@@ -10,12 +10,12 @@
 
 ## Table of content
 
-- [01 - What is Pytorch?](01%20-%20What%20is%20Pytorch%3F/README.md)
-- [02 - Autograd: automatic differentiation](02%20-%20Autograd–%20automatic%20differentiation/README.md)
-- [03 - Neural Networks](03%20-%20Neural%20Networks/README.md)
-- [04 - Training a classifier](04%20-%20Training%20a%20classifier/README.md)
-- [05 - Learning PyTorch with Examples](05%20-%20Learning%20PyTorch%20with%20Examples/README.md)
-- [06 - Transfer Learning](06%20-%20Transfer%20Learning/README.md)
+- [01 - What is Pytorch?](01%20-%20What%20is%20Pytorch%3F)
+- [02 - Autograd: automatic differentiation](02%20-%20Autograd–%20automatic%20differentiation)
+- [03 - Neural Networks](03%20-%20Neural%20Networks)
+- [04 - Training a classifier](04%20-%20Training%20a%20classifier)
+- [05 - Learning PyTorch with Examples](05%20-%20Learning%20PyTorch%20with%20Examples)
+- [06 - Transfer Learning](06%20-%20Transfer%20Learning)
 - 07 - Data Loading and Processing
 - 08 - Deep Learning for NLP with Pytorch
 - 09 - Classifying Names with a Character-Level RNN
