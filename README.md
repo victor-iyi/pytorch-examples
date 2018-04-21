@@ -1,6 +1,6 @@
 # pytorch-examples
 
-#### by Victor I. Afolabi
+#### by [Victor I. Afolabi](https://github.com/victor-iyiola)
 
 <div align="center" style="width: 80%; margin: 0 auto;">
 
@@ -26,7 +26,6 @@
 - 14 - Neural Transfer with PyTorch
 - 15 - Creating extensions using numpy and scipy
 - 16 - Custom C extensions for PyTorch
-
 
 
 
