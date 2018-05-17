@@ -16,14 +16,18 @@ CLASS_LABELS = {
     # CIFAR-10
     'cifar': ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'),
     'cifar10': ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'),
+    
+    # Hymenoptera
+    'hymenoptera': ('ants', 'bees'),
 }
 
 
 # Helper function to plot images and labels.
 def imshow(images, labels, pred=None, **kwargs):
-    """
-    Plot images and associated labels. You can also show the labels and predictions
-    side-by-side to visualize how your network is doing in terms of accurate
+    """Plot images and associated labels. 
+    
+    You can also show the labels and predictions side-by-side 
+    to visualize how your network is doing in terms of accurate
     predictions.
     
     === Parameters ===
@@ -31,7 +35,7 @@ def imshow(images, labels, pred=None, **kwargs):
             Inputs (usually an image[s]) to be visualized. It must be a PyTorch Tensor
             or sub-classes like: FloatTensor, IntTensor, etc.
             
-        labels: torch.
+        labels: torch
             Associated labels to the images. This is the (int) index of the label
             not one hot encoded labels. Must be a PyTorch tensor (just like the input).
             
@@ -134,16 +138,17 @@ def imshow(images, labels, pred=None, **kwargs):
 
 # Visualization function to visualize dataset.
 def visualize(data, **kwargs):
-    """
-    Visualize the first batch of a dataset.
+    """Visualize the first batch of a dataset.
     
-    === Parameters ===
-    data: torch.utils.data.DataLoader
-        Dataset to be visualized.
+    Arguments:
+        data {torch.utils.data.DataLoader}:
+            Dataset to be visualized.
     
-    === Keyword Arguements ===
-    See `utils.imshow`
+    Keyword Arguements:
+        See `utils.imshow`
     
+    Returns:
+        None
     """
     
     # Iterate over the data.
@@ -161,38 +166,37 @@ def visualize(data, **kwargs):
 
     
 
-# Accuracy function to compute accuracy and display predictions
-def accuracy(net, data, **kwargs):
-    """
-    Computes each class accuracy on a dataset.
+# Accuracy function to compute accuracy and display predictions.
+def accuracy(net:nn.Module, data:torch.utils.data.DataLoader, **kwargs):
+    """Computes each class accuracy on a dataset.
     
     Parameters:
-    net: nn.Module
-        The instance of a nn.Module subclass. Or a PyTorch
-        neural network class.
-    data: torch.utils.data.dataloader.DataLoader
-        Data where accuracy is computed. This must
-        be a DataLoader object.
+        net: nn.Module
+            The instance of a nn.Module subclass. Or a PyTorch
+            neural network class.
+        data: torch.utils.data.dataloader.DataLoader
+            Data where accuracy is computed. This must
+            be a DataLoader object.
     
     Keyword arguments:
-    visualize: bool, default True
-        Visualize the first `batch_size` of the data.
-        
-    classes: enum('cifar', 'mnist') default 'cifar'
-        Popular dataset classnames. To add your own
-        custom class, update the utils.CLASS_LABELS
-        dictionary to reflect your own data classes.
-        
-    logging: bool, default False (`or` not ret).
-        Pretty-print the computed accuracy, accuracy.
-        
-    ret: bool, default False
-        Return the value after computing accuracy.
-        If set to True, the output will not be printed,
-        but you can set logging=True for pretty-print.
-        
-    === Example ===
+        visualize: bool, default True
+            Visualize the first `batch_size` of the data.
 
+        classes: enum('cifar', 'mnist') default 'cifar'
+            Popular dataset classnames. To add your own
+            custom class, update the utils.CLASS_LABELS
+            dictionary to reflect your own data classes.
+
+        logging: bool, default False (`or` not ret).
+            Pretty-print the computed accuracy, accuracy.
+
+        ret: bool, default False
+            Return the value after computing accuracy.
+            If set to True, the output will not be printed,
+            but you can set logging=True for pretty-print.
+        
+    Example:
+    ```python
         >>> accuracy(net=myNeuralNet, data=testset, logging=True)
         Accuracy of plane 	 = 74.60%
         Accuracy of car 	 = 62.70%
@@ -222,13 +226,14 @@ def accuracy(net, data, **kwargs):
          0.1130
          0.0930
         [torch.FloatTensor of size 10]
+    ```
 
-    === Raise ===
+    Raises:
         TypeError:
             classes has to be one of `str`, `list`, `tuple`, `set` or `range`.
     
-    === Return ===
-        accuracy: torch.Tensor
+    Returns:
+        accuracy {torch.Tensor}:
             Computed accuracy for each classes is returned in descending order,
             only if `ret=True`. Otherwise nothing is being returned.
     """
