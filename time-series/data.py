@@ -56,7 +56,7 @@ def generate(args):
                              size=args.n)
 
     x[:] = seq + rand.reshape(args.n, 1)
-    data = np.sin(x / 1.0 / args.step).astype('float64')
+    data = np.sin(x / 1.0 / args.step, dtype='float64')
 
     # Create save folders if `args.save_dir` contains directories.
     if len(args.save_dir.split('/')) > 1 and not os.path.isdir(os.path.dirname(args.save_dir)):
