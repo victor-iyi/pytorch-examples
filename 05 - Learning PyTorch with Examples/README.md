@@ -15,24 +15,16 @@ We will use a fully-connected ReLU network as our running example. The network w
 
 ### Table of Contents
 
-- [Tensors](/01%20-%20Tensors.ipynb)
+- [Tensors](01%20-%20Tensors.ipynb)
+  - [Warm-up: numpy](01%20-%20Tensors.ipynb#Warm-up-%E2%80%93-NumPy)
+  - [PyTorch: Tensors](01%20-%20Tensors.ipynb#Warm-up-%E2%80%93-PyTorch:-Tensors)
+- [Autograd](02%20-%20Autograd.ipynb)
+    - [PyTorch: Variables and autograd](02%20-%20Autograd.ipynb#PyTorch:-Variables-and-autograd)
+    - [PyTorch: Defining new autograd functions](02%20-%20Autograd.ipynb#PyTorch:-Defining-new-autograd-functions)
+    - [TensorFlow: Static Graphs](02%20-%20Autograd.ipynb#TensorFlow:-Static-Graphs)
 
-  - [Warm-up: numpy](/01%20-%20Tensors.ipynb#Warm-up-%E2%80%93-NumPy)
-  - [PyTorch: Tensors](/01%20-%20Tensors.ipynb#Warm-up-%E2%80%93-PyTorch:-Tensors)
-
-  ​
-
-- [Autograd](/02%20-%20Autograd.ipynb)
-
-  - [PyTorch: Variables and autograd](/02%20-%20Autograd.ipynb#PyTorch:-Variables-and-autograd)
-  - [PyTorch: Defining new autograd functions](/02%20-%20Autograd.ipynb#PyTorch:-Defining-new-autograd-functions)
-  - [TensorFlow: Static Graphs](/02%20-%20Autograd.ipynb#TensorFlow:-Static-Graphs)
-
-  ​
-
-- [nn module](/03%20-%20nn.Module.ipynb)
-
-  - [PyTorch: nn](/03%20-%20nn.Module.ipynb#PyTorch:-nn)
-  - [PyTorch: optim](/03%20-%20nn.Module.ipynb#PyTorch:-optim)
-  - [PyTorch: Custom nn Modules](/03%20-%20nn.Module.ipynb#PyTorch:-Custom-nn-Modules)
-  - [PyTorch: Control Flow + Weight Sharing](/03%20-%20nn.Module.ipynb#PyTorch:-Control-Flow-+-Weight-Sharing)
+- [nn module](03%20-%20nn.Module.ipynb)
+    - [PyTorch: nn](03%20-%20nn.Module.ipynb#PyTorch:-nn)
+    - [PyTorch: optim](03%20-%20nn.Module.ipynb#PyTorch:-optim)
+    - [PyTorch: Custom nn Modules](03%20-%20nn.Module.ipynb#PyTorch:-Custom-nn-Modules)
+    - [PyTorch: Control Flow + Weight Sharing](03%20-%20nn.Module.ipynb#PyTorch:-Control-Flow-+-Weight-Sharing)
