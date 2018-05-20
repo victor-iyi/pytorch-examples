@@ -140,11 +140,11 @@ Variable containing:
 
 ```
 
-You should have got a matrix of `4.5`. Let's call the `out` Variable $“o”$.
+You should have got a matrix of ``4.5``. Let’s call the ``out`` Tensor $“o”$.
 
- $We \space have \space that;\space o = {1\over4} \sum_i z_i, z_i = 3(x_i + 2)^2 \space and \space z_i|_{x=1} = 27.$
+We have that $o\space=\space{1\over4}\sum_i{z_i,z_i = 3(x_i + 2)^2}$ and $z_i|_{x_i = 1} = 27$.
 
-$Therefore, {\delta o \over \delta x_i} = {3\over2}(x_i + 2) ,\space hence \space {\delta o \over \delta x_i}|_{x_i=1}~ =  {9\over2} = 4.5$
+Therefore, ${{\partial o}\over{\partial x_i}} = {3\over2}(x_i + 2)$, hence ${{\partial o}\over{\partial x_i}} |_{x_i = 1} = {9\over2} = 4.5$.
 
 You can do many crazy things with `autograd`!
 
