@@ -153,7 +153,7 @@ fc2_bias.size()      = torch.Size([84])
 
 ```
 
-The input to the `forward` is a `autograd.Variable`, and so is the output. **NOTE:** Expected input size to this net(LeNet) is 32x32. To use this net on MNIST, please resize the images from dataset to 32x32.
+The input to the `forward` is a `autograd.Variable`, and so is the output. **NOTE:** Expected input size to this net(LeNet) is `32x32`. To use this net on MNIST, please resize the images from dataset to `32x32`.
 
 In [6]:
 
