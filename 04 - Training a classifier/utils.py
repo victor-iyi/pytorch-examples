@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 # PyTorch.
 import torch
-from torch.autograd import Variable
 
 
 # Common dataset class labels.
@@ -167,14 +166,14 @@ def visualize(data, **kwargs):
     
 
 # Accuracy function to compute accuracy and display predictions.
-def accuracy(net:nn.Module, data:torch.utils.data.DataLoader, **kwargs):
+def accuracy(net, data, **kwargs):
     """Computes each class accuracy on a dataset.
     
     Parameters:
-        net: nn.Module
+        net: torch.nn.Module
             The instance of a nn.Module subclass. Or a PyTorch
             neural network class.
-        data: torch.utils.data.dataloader.DataLoader
+        data: torch.utils.data.DataLoader
             Data where accuracy is computed. This must
             be a DataLoader object.
     
@@ -261,7 +260,7 @@ def accuracy(net:nn.Module, data:torch.utils.data.DataLoader, **kwargs):
         inputs, labels = data_iter.next()
 
         # Run the input through the network.
-        outputs = net(Variable(inputs))
+        outputs = net(inputs)
         _, pred = torch.max(outputs.data, dim=1)
         
         # Visualize images and their predictions.
@@ -280,7 +279,7 @@ def accuracy(net:nn.Module, data:torch.utils.data.DataLoader, **kwargs):
     for (images, labels) in data:
         
         # Pass the images through the network.
-        outputs = net(Variable(images))
+        outputs = net(images)
 
         # Take the index of the maximum scores
         # returned by the network.
